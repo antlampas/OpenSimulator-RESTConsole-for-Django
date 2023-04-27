@@ -4,4 +4,18 @@
 
 from django.contrib import admin
 
-# Register your models here.
+from .models import *
+
+@admin.register(RESTConsole)
+class RESTConsoleAdmin(admin.ModelAdmin):
+    simulator = "simulator"
+    ip        = "ip"
+    port      = "port"
+    list_display = ["simulator","ip","port"]
+
+@admin.register(RESTCredential)
+class RESTCredentialAdmin(admin.ModelAdmin):
+    simulator = "simulator"
+    username  = "username"
+    password  = "password"
+    list_display = ["simulator","username","password"]

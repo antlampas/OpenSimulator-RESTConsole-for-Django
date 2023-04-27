@@ -4,7 +4,11 @@
 
 from django.shortcuts import render
 
-# Create your views here.
+from django.apps import apps
+if apps.is_installed("OpenSimBaseInterface"):
+    from OpenSimBaseInterface.models import *
+
+from .models import *
 
 def index():
     pass

@@ -4,15 +4,18 @@
 
 from django.db import models
 
-# Create your models here.
+from django.apps import apps
+if apps.is_installed("OpenSimBaseInterface"):
+    from OpenSimBaseInterface.models import *
 
-class RESTConsoles(models.Model):
-    simulator = models.CharField(max_length=26)
+class RESTConsole(models.Model):
+    simulator = models.ForeignKey("Simulator",on_delete=models.CASCADE)
     ip        = models.CharField(max_length=26)
     port      = models.CharField(max_length=26)
     models.UniqueConstraint(fields=['simulator','ip','port','username'],name='unique_RESTConsole')
 
-class RESTCredentials(models.Model):
-    simulator = models.CharField(max_length=26)
-    username  = models.CharField(max_length=26)
+class RESTCredential(models.Model):
+    simulator = models.ForeignKey("RESTConsole",on_delete=models.CASCADE)
+    username  = models.ForeignKey("Simulator",on_delete=models.CASCADE)
     password  = models.CharField(max_length=26)
+    models.UniqueConstraint(fields=['simulator','username'],name='unique_RESTCredentials')
