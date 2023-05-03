@@ -9,12 +9,24 @@ if apps.is_installed("OpenSimBaseInterface"):
     from OpenSimBaseInterface.models import *
 
 from .models import *
+from .forms  import *
 
-def index():
-    pass
+def index(request):
+    form = SimulatorSelect()
+    context = {"form" : form}
+    return render(request,'RESTConsole/index.html',context)
 
-def input():
-    pass
+def console(request):
+    if request.method == "POST":
+        simulator = request.POST.get("Simulator")
+        
+    context = {}
+    return render(request,'RESTConsole/index.html',context)
 
-def output():
-    pass
+def input(request):
+    context = {}
+    return render(request,'RESTConsole/input.html',context)
+
+def output(request):
+    context = {}
+    return render(request,'RESTConsole/output.html',context)

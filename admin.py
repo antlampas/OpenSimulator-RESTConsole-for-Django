@@ -6,6 +6,12 @@ from django.contrib import admin
 
 from .models import *
 
+@admin.register(Setting)
+class settingAdmin(admin.ModelAdmin):
+    option = "option"
+    value  = "value"
+    list_display = ["option","value"]
+
 @admin.register(RESTConsole)
 class RESTConsoleAdmin(admin.ModelAdmin):
     simulator = "simulator"

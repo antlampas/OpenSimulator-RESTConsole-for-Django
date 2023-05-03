@@ -7,12 +7,18 @@ This work is licensed under the Creative Commons Attribution 4.0 International L
 {% extends "base/base.html" %}
 
 {% block content %}
-    <div class="output">
-        {% block output %}
-        {% endblock %}
-    </div>
-    <div class="input">
-        {% block input %}
-        {% endblock %}
-    </div>
+
+<form action="/RESTConsole/RESTConcole" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Avvia">
+</form>
+<div class="output">
+    {% block output %}
+    {% endblock %}
+</div>
+<div class="input">
+    {% block input %}
+    {% endblock %}
+</div>
 {% endblock %}
